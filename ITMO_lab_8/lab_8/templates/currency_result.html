@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <nav class="navigation">
+        {% for item in navigation %}
+            <a href="{{ item.href }}">{{ item.caption }}</a>{% if not loop.last %} | {% endif %}
+        {% endfor %}
+    </nav>
+
+    <h1>Курс валюты: {{ currency_id }}</h1>
+
+    <a href="/currency" class="back-button">← Назад к вводу</a>
+
+    {% if error and error != "" %}
+        <div class="error-message">
+            Ошибка: {{ error }}
+        </div>
+    {% else %}
+        <div class="currency-info">
+            <h2>{{ currency_name }}</h2>
+            <p><strong>Код валюты:</strong> {{ currency_id }}</p>
+            <p><strong>Курс к рублю:</strong> {{ rate }} ₽</p>
+            <p><strong>Номинал:</strong> {{ nominal }} {{ currency_id }}</p>
+            <p><strong>Дата актуальности:</strong> на текущую дату (ЦБ РФ)</p>
+        </div>
+    {% endif %}
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .navigation {
+            background: linear-gradient(135deg, #2d2d2d, #404040);
+            padding: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            border: 1px solid #555;
+            border-radius: 12px;
+        }
+
+        .navigation a {
+            color: #4fc3f7;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .navigation a:hover {
+            background-color: #007acc;
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #00d4aa, #00b894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: #00d4aa;
+            text-align: center;
+            border-bottom: 2px solid #00d4aa;
+            padding-bottom: 10px;
+            border-radius: 0 0 12px 12px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            background: linear-gradient(135deg, #00d4aa, #00b894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: #00d4aa;
+            margin-top: 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4aa, #00b894);
+            color: #1a1a1a;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .error-message {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-left: 4px solid #ff6b6b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            color: #fff;
+        }
+
+        .currency-info {
+            background: linear-gradient(135deg, #2d2d2d, #404040);
+            padding: 25px;
+            border: 1px solid #555;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .currency-info p {
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .currency-info strong {
+            color: #00d4aa;
+        }
+    </style>
+</body>
+</html>

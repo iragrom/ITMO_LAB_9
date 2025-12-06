@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}} | {{author}}</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>{{title}}</h1>
+
+      <div class="content">
+        <p>{{ content }}</p>
+      </div>
+
+      <ul class="navigation">
+        {% for item in navigation %}
+          <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+
+  <style>
+
+    /* Темная тема с градиентным фоном */
+    body {
+      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);  /* Черно-серый градиент */
+      color: #e0e0e0;                                        /* Светло-серый текст */
+      font-family: Arial, sans-serif;                        /* Простой шрифт */
+      margin: 0; padding: 20px;                              /* Отступы */
+      max-width: 800px; margin: 0 auto;                      /* Центрирование */
+    }
+
+    /* Градиентный заголовок H1 */
+    h1 {
+      background: linear-gradient(135deg, #00d4aa, #00b894); /* Зеленый градиент */
+      -webkit-background-clip: text;                         /* Обрезает по буквам */
+      -webkit-text-fill-color: transparent;                  /* Прозрачный текст */
+      background-clip: text;                                 /* Для всех браузеров */
+      color: #00d4aa;                                        /* Запасной цвет */
+      text-align: center;                                    /* По центру */
+      border-bottom: 2px solid #00d4aa;                      /* Зеленая линия снизу */
+      padding-bottom: 10px; border-radius: 0 0 12px 12px;    /* Закругление снизу */
+      margin-bottom: 20px;                                   /* Отступ снизу */
+    }
+
+    /* Контент - темно-серый градиентный блок */
+    .content {
+      background: linear-gradient(135deg, #2d2d2d, #404040); /* Серый градиент */
+      padding: 25px;                                         /* Внутренние отступы */
+      margin-bottom: 25px;                                   /* Отступ снизу */
+      border: 1px solid #555;                                /* Серая рамка */
+      border-radius: 12px;                                   /* Закругленные углы */
+    }
+
+    /* Навигационное меню - градиентный блок */
+    .navigation {
+      list-style: none;                                      /* Без маркеров */
+      padding: 0;                                            /* Без отступов */
+      background: linear-gradient(135deg, #2d2d2d, #404040); /* Серый градиент */
+      padding: 20px;                                         /* Внутренние отступы */
+      border: 1px solid #555; border-radius: 12px;           /* Рамка + закругление */
+      margin: 20px 0;                                        /* Отступы сверху/снизу */
+    }
+
+    /* Голубые ссылки меню */
+    .navigation li { margin-bottom: 10px; }                  /* Отступы между пунктами */
+    .navigation a {
+      color: #4fc3f7;                                        /* Светло-голубой цвет */
+      text-decoration: none; padding: 8px; display: block;   /* Ссылка как блок */
+      border-radius: 6px;                                    /* Закругление */
+    }
+
+    /* Темно-синий фон ссылок при наведении */
+    .navigation a:hover { background-color: #007acc; }
+
+    }
+  </style>
+</html>

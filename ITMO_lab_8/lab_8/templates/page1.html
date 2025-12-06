@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <h1>{{title}}</h1>
+
+    {% if error and error != "" %}
+    <div class="error-box">
+      <strong>Ошибка:</strong> {{ error }}
+    </div>
+    {% endif %}
+
+
+    <div class="form-container">
+      <form method="POST" action="/submit">
+        <div>
+          <input type="text" name="name" placeholder="Имя" required>
+        </div>
+        <div>
+          <input type="number" name="age" placeholder="Возраст" required>
+        </div>
+        <div>
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <button type="submit">Отправить</button>
+      </form>
+    </div>
+
+    <p>{{ content }}</p>
+
+
+    <ul class="navigation">
+      {% for item in navigation %}
+        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+
+  <style>
+
+    /* Темная тема с градиентным фоном */
+    body {
+      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);  /* Черно-серый градиент */
+      color: #e0e0e0;                                        /* Светло-серый текст */
+      font-family: Arial, sans-serif;                        /* Простой шрифт */
+      margin: 0; padding: 20px;                              /* Отступы */
+      max-width: 800px; margin: 0 auto;                      /* Центрирование */
+    }
+
+    /* Градиентный заголовок H1 */
+    h1 {
+      background: linear-gradient(135deg, #00d4aa, #00b894); /* Зеленый градиент */
+      -webkit-background-clip: text;                         /* Обрезает по буквам */
+      -webkit-text-fill-color: transparent;                  /* Прозрачный текст */
+      background-clip: text;                                 /* Для всех браузеров */
+      color: #00d4aa;                                        /* Запасной цвет */
+      text-align: center;                                    /* По центру */
+      border-bottom: 2px solid #00d4aa;                      /* Зеленая линия снизу */
+      padding-bottom: 10px; border-radius: 0 0 12px 12px;    /* Закругление снизу */
+    }
+
+    /* Красный блок ошибки с полоской */
+    .error-box {
+      background: linear-gradient(135deg, #ff6b6b, #ff8e8e); /* Красный градиент */
+      border-left: 4px solid #ff6b6b;                        /* Красная полоска слева */
+      padding: 15px; margin: 15px 0;                         /* Отступы */
+      border-radius: 8px;                                    /* Закругленные углы */
+      color: #fff;                                           /* Белый текст */
+    }
+
+    /* Контейнер - темно-серый градиент */
+    .form-container {
+      background: linear-gradient(135deg, #2d2d2d, #404040); /* Серый градиент */
+      padding: 25px; margin: 20px 0;                         /* Отступы */
+      border: 1px solid #555; border-radius: 12px;           /* Рамка + закругление */
+    }
+
+    /* Поля ввода - градиент + закругление */
+    input[type="text"], input[type="number"], input[type="email"] {
+      width: 100%; padding: 12px; margin-bottom: 15px;       /* Размер + отступы */
+      background: linear-gradient(135deg, #404040, #555);    /* Градиент полей */
+      color: #e0e0e0;                                        /* Светлый текст */
+      border: 1px solid #666; border-radius: 8px;            /* Рамка + закругление */
+      font-size: 16px; box-sizing: border-box;               /* Размер + расчет ширины */
+    }
+
+    /* Зеленая кнопка отправки */
+    button {
+      background: linear-gradient(135deg, #00d4aa, #00b894); /* Зеленый градиент */
+      color: #1a1a1a; padding: 12px;                         /* Темный текст + отступы */
+      border: none; width: 100%; font-size: 16px;            /* Полная ширина */
+      cursor: pointer; border-radius: 8px;                   /* Курсор + закругление */
+    }
+
+    /* Навигационное меню - градиентный блок */
+    .navigation {
+      list-style: none; padding: 0;                          /* Без маркеров */
+      background: linear-gradient(135deg, #2d2d2d, #404040); /* Серый градиент */
+      padding: 20px; border: 1px solid #555; border-radius: 12px; /* Стиль блока */
+      margin: 20px 0;                                        /* Отступы */
+    }
+
+    /* Голубые ссылки меню */
+    .navigation li { margin-bottom: 10px; }                 /* Отступы между пунктами */
+    .navigation a {
+      color: #4fc3f7;                                        /* Светло-голубой цвет */
+      text-decoration: none; padding: 8px; display: block;   /* Ссылка как блок */
+      border-radius: 6px;                                    /* Закругление */
+    }
+
+    /* Темно-синий фон ссылок при наведении */
+    .navigation a:hover { background-color: #007acc; }
+  </style>
+</html>

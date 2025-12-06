@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <h1>{{title}}</h1>
+
+    {% if error and error != "" %}
+    <div style="background: linear-gradient(135deg, #ff6b6b, #ff8e8e); border-left: 4px solid #ff6b6b; padding: 15px; margin: 15px 0; border-radius: 8px;">
+      <strong>Ошибка:</strong> {{ error }}
+    </div>
+    {% endif %}
+
+    <!-- Добавление пользователя и валюты -->
+    <div class="form-container">
+      <form method="POST" action="/add_currency">
+        <div>
+          <input type="text" name="username" placeholder="Имя пользователя" required>
+        </div>
+        <div>
+          <input type="text" name="currency" placeholder="Код валюты (USD, EUR и т.д.)" required>
+        </div>
+        <button type="submit">Добавить валюту</button>
+      </form>
+    </div>
+
+    <!-- Показываем сохраненные данные пользователей -->
+    {% if users_data %}
+    <div class="data-display">
+      <h4>Сохраненные валюты пользователей:</h4>
+      {% for user in users_data %}
+        <div class="user-card">
+          <p><strong>Пользователь:</strong> {{ user.username }}</p>
+          <p><strong>Просмотренные валюты:</strong>
+            {% if user.currencies %}
+              {{ user.currencies|join(', ') }}
+            {% else %}
+              нет сохраненных валют
+            {% endif %}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <p>{{ content }}</p>
+
+    <!-- Меню -->
+    <ul class="navigation">
+      {% for item in navigation %}
+        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #00d4aa;
+      text-align: center;
+      border-bottom: 2px solid #00d4aa;
+      padding-bottom: 10px;
+      border-radius: 0 0 12px 12px;
+      background: linear-gradient(135deg, #00d4aa, #00b894);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .form-container {
+      background: linear-gradient(135deg, #2d2d2d, #404040);
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid #555;
+      border-radius: 12px;
+    }
+
+    input[type="text"] {
+      width: 97.1%;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #404040, #555);
+      color: #e0e0e0;
+      border: 1px solid #666;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #00d4aa, #00b894);
+      color: #1a1a1a;
+      padding: 12px;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .data-display {
+      background: linear-gradient(135deg, #2d2d2d, #404040);
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid #555;
+      border-radius: 12px;
+    }
+
+    .data-display h4 {
+      color: #00d4aa;
+      margin-top: 0;
+    }
+
+    .user-card {
+      background: linear-gradient(135deg, #363636, #444);
+      padding: 15px;
+      margin-bottom: 15px;
+      border-left: 4px solid #007acc;
+      border-radius: 8px;
+    }
+
+    .navigation {
+      list-style: none;
+      padding: 0;
+      background: linear-gradient(135deg, #2d2d2d, #404040);
+      padding: 20px;
+      border: 1px solid #555;
+      border-radius: 12px;
+    }
+
+    .navigation li {
+      margin-bottom: 10px;
+    }
+
+    .navigation a {
+      color: #4fc3f7;
+      text-decoration: none;
+      padding: 8px;
+      display: block;
+      border-radius: 6px;
+    }
+
+    .navigation a:hover {
+      background-color: #007acc;
+    }
+  </style>
+</html>
