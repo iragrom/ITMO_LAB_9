@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+    <h2>Добро пожаловать!</h2>
+    <p>Список доступных валют (Центробанк РФ):</p>
+
+    <!-- Быстрые ссылки -->
+    <div style="margin-bottom: 25px;">
+        <a href="/currencies" class="btn">📊 Все валюты</a>
+        <a href="/users" class="btn btn-sm">👥 Пользователи</a>
+        <a href="/currency/show" class="btn btn-sm">📈 Консоль</a>
+    </div>
+
+    <!-- Компактная таблица популярных валют -->
+    <table>
+        <tr>
+            <th>Код</th>
+            <th>Название</th>
+            <th>Курс (₽)</th>
+            <th>Номинал</th>
+            <th></th>
+        </tr>
+        {% for currency in currencies %}
+        <tr>
+            <td><strong style="color: #00d4aa;">{{ currency.char_code }}</strong></td>
+            <td>{{ currency.name }}</td>
+            <td><strong>{{ "%.2f"|format(currency.value) }}</strong></td>
+            <td style="font-size: 14px; color: #888;">{{ currency.nominal }}</td>
+            <td>
+                <a href="/currencies" class="btn btn-sm" title="Все валюты + CRUD">Подробнее</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if not currencies %}
+    <div class="empty-state">
+        <h3>📭 Валюты не загружены</h3>
+        <p>Перейдите в <a href="/currencies" class="btn">Все валюты</a> для управления данными</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title if title else "Валюты" }}</title>
+    <style>
+             /* Основной фон и текст */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);  /* Темный градиент */
+            color: #e0e0e0;                                           /* Светлый текст */
+            min-height: 100vh;
+        }
+
+        /* Основной контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #2d2d2d, #404040);   /* Серый градиент */
+            padding: 25px;
+            border-radius: 12px;                                     /* Закругленные углы */
+            border: 1px solid #555;                                  /* Серая рамка */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);                /* Тень */
+        }
+
+        /* Навигация - градиентный блок */
+        nav {
+            background: linear-gradient(135deg, #363636, #444);      /* Темно-серый градиент */
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #555;
+            text-align: center;
+        }
+
+        nav a {
+            color: #4fc3f7;                                          /* Голубой цвет ссылок */
+            margin-right: 25px;                                      /* Расстояние между */
+            margin-left: 5px;
+            text-decoration: none;
+            padding: 10px 15px;                                      /* Отступы */
+            border-radius: 8px;                                      /* Закругление */
+            display: inline-block;
+            font-weight: 500;
+            transition: all 0.3s ease;                               /* Плавные переходы */
+        }
+
+        nav a:hover {
+            background-color: #007acc;                               /* Темно-синий при hover */
+            transform: translateY(-2px);                             /* Подъем */
+        }
+
+        nav a:last-child {
+            margin-right: 0;                                         /* Без отступа справа */
+        }
+
+        /* Карточки контента */
+        .card {
+            background: linear-gradient(135deg, #363636, #444);      /* Градиент карточки */
+            border: 1px solid #555;                                  /* Серая рамка */
+            border-radius: 12px;                                     /* Закругление */
+            margin-bottom: 25px;
+            border-left: 4px solid #00d4aa;                          /* Зеленая полоска */
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #00d4aa, #00b894);   /* Зеленый градиент */
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px 8px 0 0;                              /* Закругление сверху */
+            margin: -1px;                                            /* Прилегание к рамке */
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .card-body {
+            padding: 25px;                                           /* Увеличенные отступы */
+        }
+
+        /* Заголовки с градиентом */
+        h1, h2, h3, h4, h5, h6 {
+            background: linear-gradient(135deg, #00d4aa, #00b894);   /* Зеленый градиент */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: #00d4aa;                                          /* Запасной цвет */
+            margin-top: 0;
+        }
+
+        /* Таблицы */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: linear-gradient(135deg, #363636, #444);
+            border-radius: 8px;
+            overflow: hidden;                                        /* Скругление углов */
+        }
+
+        th, td {
+            border: 1px solid #555;                                  /* Серая рамка */
+            padding: 12px 15px;                                      /* Отступы */
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(135deg, #00d4aa, #00b894);   /* Зеленый заголовок */
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #404040;                               /* Чередуем фон */
+        }
+
+        tr:hover {
+            background-color: #007acc !important;                    /* Голубой hover */
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #00d4aa, #00b894);   /* Зеленый градиент */
+            color: #1a1a1a;                                          /* Темный текст */
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 170, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);   /* Красный градиент */
+            color: white;
+        }
+
+        .btn-danger:hover {
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-sm {
+            padding: 5px 12px;                                       /* Маленькие кнопки */
+            font-size: 13px;
+            min-width: 60px;
+        }
+
+        /* Контент блок */
+        .content {
+            background: linear-gradient(135deg, #363636, #444);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #00d4aa;
+            margin-bottom: 20px;
+        }
+
+        /* Акценты */
+        strong {
+            color: #00d4aa;                                          /* Зеленый */
+        }
+
+        code {
+            background: #404040;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #4fc3f7;                                          /* Голубой код */
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Блок ошибок */
+        .error-box {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-left: 4px solid #ff6b6b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Навигация -->
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/author">Об авторе</a>
+            <a href="/users">Пользователи</a>
+            <a href="/currencies">Валюты</a>
+        </nav>
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>

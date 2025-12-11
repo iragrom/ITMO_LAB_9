@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+    <h2>Все валюты</h2>
+
+    <!-- Кнопки действий -->
+    <div style="margin-bottom: 20px;">
+        <a href="/currency/show" class="btn btn-sm">📊 Показать в консоли</a>
+    </div>
+
+    <!-- Таблица валют с CRUD -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NumCode</th>
+            <th>CharCode</th>
+            <th>Name</th>
+            <th>Value (₽)</th>
+            <th>Nominal</th>
+            <th>Действия</th>
+        </tr>
+        {% for item in currencies %}
+        <tr>
+            <td><strong>{{ item.id }}</strong></td>
+            <td>{{ item.num_code }}</td>
+            <td><strong style="color: #00d4aa;">{{ item.char_code }}</strong></td>
+            <td>{{ item.name }}</td>
+            <td><strong>{{ "%.2f"|format(item.value) }}</strong></td>
+            <td>{{ item.nominal }}</td>
+            <td>
+                <a href="/currency/update?{{item.char_code}}=95.0" class="btn btn-sm">🔄 Обновить</a>
+                <a href="/currency/delete?id={{item.id}}" class="btn btn-sm btn-danger">🗑️ Удалить</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if not currencies %}
+    <div class="empty-state">
+        <p>📭 Нет валют в базе данных</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+

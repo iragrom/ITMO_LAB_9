@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+    <h2>Пользователи и их валюты</h2>
+
+    <!-- Краткая статистика -->
+    <div class="stats-row" style="margin-bottom: 25px; display: flex; gap: 20px; flex-wrap: wrap;">
+        <div class="stat-card">
+            <span class="stat-number">{{ users|length }}</span>
+            <span>пользователей</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">{{ total_subscriptions }}</span>
+            <span>подписок</span>
+        </div>
+    </div>
+
+    <!-- Таблица пользователей -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Подписки</th>
+            <th>Количество</th>
+            <th>Действия</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td><strong style="color: #4fc3f7;">#{{ user.id }}</strong></td>
+            <td>
+                <strong style="color: #00d4aa;">{{ user.name }}</strong>
+            </td>
+            <td>
+                {% if user.currencies %}
+                    <div class="currency-tags">
+                        {% for currency in user.currencies %}
+                        <span class="currency-tag">{{ currency }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <span class="no-subscriptions">📭 нет подписок</span>
+                {% endif %}
+            </td>
+            <td><strong>{{ user.currencies|length if user.currencies else 0 }}</strong></td>
+            <td>
+                <a href="/user?id={{ user.id }}" class="btn btn-sm">👁️ Профиль</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if not users %}
+    <div class="empty-state">
+        <h3>👥 Пользователи не найдены</h3>
+        <p>База данных пуста. Перейдите в <a href="/currencies" class="btn">валюты</a> для начала работы.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
