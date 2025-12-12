@@ -2,7 +2,7 @@ from models.currency import Currency
 
 
 class CurrencyController:
-    """Контроллер бизнес-логики для работы с валютами"""
+    """Контроллер для работы с валютами"""
 
     def __init__(self, db_controller):
         """
@@ -12,16 +12,16 @@ class CurrencyController:
         self.db = db_controller
 
     def list_currencies(self):
-        """Получить все валюты (Read)"""
+        """Получить все валюты"""
         return self.db.read_currencies()
 
     def get_currency(self, currency_id: int):
-        """Получить валюту по ID (Read)"""
+        """Получить валюту по ID """
         return self.db.read_currency(currency_id)
 
     def create_currency(self, currency_data: dict):
         """
-        Создать новую валюту (Create)
+        Создать новую валюту 
 
         Args:
             currency_data (dict): Данные валюты
@@ -29,9 +29,8 @@ class CurrencyController:
         Returns:
             int: ID созданной валюты
         """
-        # Валидация данных перед сохранением
         try:
-            # Создаем объект Currency для валидации
+            # Создаем объект Currency 
             currency = Currency(
                 num_code=currency_data['num_code'],
                 char_code=currency_data['char_code'],
@@ -90,4 +89,5 @@ class CurrencyController:
             if currency['char_code'].upper() == char_code.upper():
                 return currency
         return None
+
 
